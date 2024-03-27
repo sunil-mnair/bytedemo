@@ -27,13 +27,13 @@
 
     <tr>
         <td style="padding-right:15px;font-size:0.8em">{{r.studentName}}</td>
-        {% if r.score == 10 %}
+        {% if r.score == 5 %}
             <td class="top-scorer" style="background-color:gold;font-size:0.8em;padding:10px">{{r.score}} / {{r.questions}}</td>
-        {% elif r.score >= 8 %}
+        {% elif r.score >= 4 %}
             <td class="top-scorer" style="background-color:green;font-size:0.8em;color:white;padding:10px">{{r.score}} / {{r.questions}}</td>
-        {% elif r.score >= 6 %}
-            <td style="background-color:darkorange;font-size:0.8em;color:white;padding:10px">{{r.score}} / {{r.questions}}</td>
         {% elif r.score >= 3 %}
+            <td style="background-color:darkorange;font-size:0.8em;color:white;padding:10px">{{r.score}} / {{r.questions}}</td>
+        {% elif r.score >= 1 %}
             <td style="background-color:yellow;font-size:0.8em;color:black;padding:10px">{{r.score}} / {{r.questions}}</td>
          {% elif r.score >= 0 %}
             <td style="background-color:red;font-size:0.8em;color:white;padding:10px">{{r.score}} / {{r.questions}}</td>
