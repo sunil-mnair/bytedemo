@@ -1,0 +1,51 @@
+{% extends "quiz_base.html"%}
+{% block content %}
+
+
+
+<div class="quiz-board">
+
+
+{% if session["current_survey"] %}
+
+
+
+<h2>Question {{ session["current_survey"]["id"] }} of {{ session["total_survey"] }}</h2>
+
+<h3 class="question">{{ session["current_survey"]["question"] }}</h3>
+
+{% if session["current_survey"]["image"] %}
+<img src="/static/images/{{session['current_survey']['image']}}" style="padding-bottom:10px;max-width: 500px;"/>
+{% endif %}
+
+<form action="/survey" method="POST">
+    {% for choice in session["current_survey"]["choices"] %}
+    <div class="choice"><input type="checkbox" id="{{loop.index}}" name="selected_choice" value="{{ choice }}"><label>{{ choice }}</label></div>
+    {% endfor %}
+<input type="submit" name="submit_btn" value="Submit Answer">
+
+</form>
+
+
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}       
+            <h5 class="bg-{{category}} p-3">{{ message }}</h4>
+    {% endfor %}
+
+  {% endif %}
+{% endwith %}
+
+
+{% endif %}
+
+{% if percentage %}
+<h3 class="percentage">{{ percentage }}% students answered the previous question correctly</h3>
+{% endif %}
+
+</div>
+
+
+
+{% endblock %}

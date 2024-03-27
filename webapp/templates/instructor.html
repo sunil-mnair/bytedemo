@@ -1,0 +1,57 @@
+{% extends 'base_form_template.html'%}
+{%block content%}
+<div class="instructor">
+    
+        <h1>Sunil Nair</h1>
+        <h2>Educator, Author and BI Consultant</h2>
+        
+        <ul>
+            <li><b>Experience</b>: 1200+ Training hours for 80+ Clients</li>
+            <li><b>Career Start</b>: Began in 2002 in Dubai, in the IT training sector</li>
+            <li><b>Corporate Transition</b>: Moved to the corporate IT world in 2003</li>
+            <li><b>Interests</b>: Practicing classical hatha yoga</li>
+            <li><b>Hidden Truth</b>: I bake Cakes like a Pro!</li>
+        </ul>
+
+        <div class="carousel-container">
+            <div class="carousel-slide">
+                {% for client in clients %}
+                <img src="https://www.bytesizetrainings.com/static/images/logos/{{client}}" alt="Logo 1">
+                {% endfor %}
+            </div>
+            <button class="prev">&#10094;</button>
+            <button class="next">&#10095;</button>
+        </div>
+        
+    
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.carousel-slide img');
+    const totalSlides = slides.length;
+    let slideInterval = setInterval(nextSlide, 900); // Change slides every 3 seconds
+
+    document.querySelector('.next').onclick = function() {
+        nextSlide();
+    };
+
+    document.querySelector('.prev').onclick = function() {
+        slideIndex = (slideIndex - 1 + totalSlides) % totalSlides;
+        updateCarousel();
+    };
+
+    function nextSlide() {
+        slideIndex = (slideIndex + 1) % totalSlides;
+        updateCarousel();
+    }
+
+    function updateCarousel() {
+        const offset = slideIndex * -1600 / totalSlides;
+        document.querySelector('.carousel-slide').style.transform = `translateX(${offset}%)`;
+    }
+</script>
+
+{% endblock %}

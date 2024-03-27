@@ -1,0 +1,47 @@
+{% from "render_form_fields.html" import render_field %}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+
+
+<div class="container">
+
+
+    <div class="row justify-content-center align-items-center" style="height:100vh">
+
+            <div class="card">
+                <div class="card-body">
+
+                    <img class="card-img-top" src="{{logo}}" height="100px" style="object-fit: contain;">
+
+                    <h5 class="card-title">{{title}}</h5>
+
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category,message in messages %}
+                        <p class="card-text bg-{{category}} pl-3 text-sm text-light"> {{ message }}</p>
+                        {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+    
+    {% block content %}
+
+    {% endblock %}
+                </div>
+            </div>
+
+    </div>
+</div>
+
+{% block script %}
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SELECT</title>
+</head>
+<body>
+    <link rel="stylesheet" href="/richtexteditor/rte_theme_default.css" />
+<script type="text/javascript" src="/richtexteditor/rte.js"></script>
+<script type="text/javascript" src='/richtexteditor/plugins/all_plugins.js'></script>
+<div id="div_editor1"></div>
+
+<script>
+	var editor1 = new RichTextEditor("#div_editor1");
+
+	editor1.setHTMLCode("<p></p>");
+
+	function btnInsertHTMLCode_1() {
+		editor1.insertHTML("Time is" + new Date().toLocaleTimeString())
+		editor1.collapse(false);
+		editor1.focus();
+	}
+	function btnInsertHTMLCode_2() {
+		editor1.selectDoc(false);//collapse to document end
+		editor1.insertHTML("<p>Insert a new paragraph " + new Date().toLocaleTimeString() + "</p>")
+		editor1.collapse(false);
+		editor1.focus();
+	}
+</script>
+
+<div class="content-space-t-1 ">
+	<button class="btn btn-sm btn-outline-primary btn-pill transition-3d-hover px-5" onclick="btnInsertHTMLCode_1();return false;">insertHTML at a specified position</button>
+	<button class="btn btn-sm btn-primary btn-pill transition-3d-hover px-5" onclick="btnInsertHTMLCode_2();return false;">insertHTML at the end of this document</button>
+</div>
+</body>
+</html>

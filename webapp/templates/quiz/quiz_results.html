@@ -1,0 +1,54 @@
+
+
+
+{% extends "quiz_base.html"%}
+
+{% block head %}
+<meta http-equiv="refresh" content="15">
+{% endblock %}
+
+
+{% block content %}
+
+<div class="quiz-board">
+
+
+<h3>Quiz Results</h3>
+<h4>Date: {{today.date().strftime("%d-%b-%Y")}}</h4>
+
+{% if quiz_results %}
+    <table>
+        <tr>
+        <th style="text-align:left">Student Name</th>
+        <th>Score</th>
+        <th>Time Taken</th>
+    </tr>
+    {% for r in quiz_results %}
+
+    <tr>
+        <td style="padding-right:15px;font-size:0.8em">{{r.studentName}}</td>
+        {% if r.score == 10 %}
+            <td class="top-scorer" style="background-color:gold;font-size:0.8em;padding:10px">{{r.score}} / {{r.questions}}</td>
+        {% elif r.score >= 8 %}
+            <td class="top-scorer" style="background-color:green;font-size:0.8em;color:white;padding:10px">{{r.score}} / {{r.questions}}</td>
+        {% elif r.score >= 6 %}
+            <td style="background-color:darkorange;font-size:0.8em;color:white;padding:10px">{{r.score}} / {{r.questions}}</td>
+        {% elif r.score >= 3 %}
+            <td style="background-color:yellow;font-size:0.8em;color:black;padding:10px">{{r.score}} / {{r.questions}}</td>
+         {% elif r.score >= 0 %}
+            <td style="background-color:red;font-size:0.8em;color:white;padding:10px">{{r.score}} / {{r.questions}}</td>
+        {% endif %}
+        <td style="margin-left:2px;font-size:0.8em">{{(r.end_time-r.start_time)|duration}}</td>
+    </tr>
+
+    {% endfor %}
+    </table>
+
+{% endif %}
+
+</div>
+
+{% endblock %}
+
+
+

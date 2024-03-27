@@ -1,0 +1,55 @@
+{% extends "base_template.html" %}
+{% block content %}
+
+
+
+<section id="popular-courses" class="bs-courses" style="margin-top: 50px;margin-bottom: 100px;">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-title">
+        <!-- <h2> Courses for Professionals</h2> -->
+        <!-- <p>Popular Courses</p> -->
+      </div>
+
+      <div class="row" data-aos="zoom-in" data-aos-delay="100">
+
+        {% for course in courses %}
+        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+          <div class="course-item">
+            <img src="https://raw.githubusercontent.com/sunil-mnair/curriculum/master/course_images/{{ course.courseImage }}" class="img-fluid" alt="...">
+            <div class="course-content">
+              <!-- <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4></h4>
+                <p class="price">Updated: </p>
+              </div> -->
+
+              <h3><a href="/course/{{ course.id }}">{{ course.courseName }}</a></h3>
+              <small>{{ course.courseDescription }}</small>
+              <div class="trainer d-flex justify-content-between align-items-center">
+                <div class="trainer-profile d-flex align-items-center">
+                  <img src="/static/images/sunil_nair.png" class="img-fluid" alt="">
+                  <span>Instructor: Sunil Nair</span>
+                </div>
+                <div class="trainer-rank d-flex align-items-center">
+                  <i class="bx bx-user"></i>
+                  <!-- <i class="bx bx-heart"></i>&nbsp;65 -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> 
+        {% endfor %}
+        <!-- mt-4 mt-md-0 -->
+        <!-- End Course Item-->
+      </div>
+
+    </div>
+  </section>
+
+
+
+{% endblock %}
+
+{% block javascript %}
+<script href="{{url_for('static',filename='js/script.js')}}"></script>
+{% endblock %}

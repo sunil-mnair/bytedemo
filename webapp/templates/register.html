@@ -1,0 +1,14 @@
+{% extends "base_form_template.html"%}
+{% block content %}
+                    <form action="/register" method="POST" autocomplete="off">
+                      {{ form.csrf_token }}
+
+                      {{ render_field(form.fullname,placeholder=form.fullname.label.text) }}
+                      {{ render_field(form.position,placeholder=form.position.label.text) }}
+                      {{ render_field(form.department,placeholder=form.department.label.text) }}
+                      {{ form.submit(class="btn btn-lg btn-block btn-primary")}}
+
+                      
+                    </form>
+{% endblock %}
+               

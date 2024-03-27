@@ -1,0 +1,16 @@
+{% extends "base_form_template.html"%}
+{% block content %}
+                    <form action="/login" method="POST" autocomplete="off">
+                        {{ form.csrf_token }}
+
+                            {{ render_field(form.username,placeholder=form.username.label.text) }}
+                            {{ render_field(form.password,placeholder=form.password.label.text) }}
+
+                        <div class="checkbox">
+                            {{ form.remember }} Remember Me
+                          </div>
+                          {{ form.submit(class="btn btn-lg btn-block btn-primary")}}
+
+                    </form>
+                
+{% endblock %}

@@ -1,0 +1,34 @@
+
+
+
+{% extends "quiz_base.html"%}
+
+{% block head %}
+<meta http-equiv="refresh" content="5">
+{% endblock %}
+
+
+{% block content %}
+
+<div class="survey-container">
+    <h1>Survey Results</h1>
+    {% for q,results in sr.items() %}
+    <div class="question">
+        <h3>{{loop.index}}: {{q}}</h3>
+        {% for r in results %}
+        <div class="result-bar" style="--percentage: {{(r[1]/4)*100}}%;">
+            <span>{{r[0]}}</span>
+        </div>
+        {% endfor %}
+       
+    </div>
+    {% endfor %}
+    
+
+    <!-- Add more questions as needed -->
+</div>
+
+{% endblock %}
+
+
+

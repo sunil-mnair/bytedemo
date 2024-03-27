@@ -1,0 +1,51 @@
+{% extends "base_template.html" %}
+{% block content %}
+    <div style="margin-bottom: -10vh;"></div>
+
+    <section class="enrolled-course">
+        <div style="font-weight: bold;" class="course_dir">
+            <a href="/">Home </a> <i>/</i><a href="/"> Courses </a> <i>/</i><a href="">{{ course.courseName }}</a>
+        </div>
+        
+        <div class="content">
+            
+            <div class="course_outline">
+                <h4>Objective</h4>
+                <p style="max-width: 70%;">{{html|safe}}</p>
+
+                {% if lessons %}
+                <h4>Course Outline</h4>
+                 <table class="hoverTable">
+                    {% for lesson in lessons %}
+                        <tr style="color:black !important;">
+                            <td>{{loop.index}}. {{ lesson.lessonName }}</td>
+                            <td><a class="lesson_link" href="/view_lesson/{{ lesson.id }}" class="learn">View</a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                {% else %}
+                <h4>Course Review</h4>
+                 <div class="lesson-description">
+                        {{ html|safe }}
+                    </div>
+                {% endif %}
+
+            </div>
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+        {% for category, message in messages %}
+            {% if category == "correct" %}
+                <small class="correct" class="form-text text-muted">{{ message }}</small>
+            {% endif %}
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        
+        
+
+        
+
+    </section>
+{% endblock %}
